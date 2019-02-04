@@ -1,0 +1,38 @@
+ID: OpenSAPCourse_HANA7
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: db
+    type: hdb
+    path: db
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+    requires:
+      - name: OpenSAPCourse_HANA7-hdi-container
+  - name: srv
+    type: nodejs
+    path: srv
+    parameters:
+      memory: 512M
+      disk-quota: 256M
+    provides:
+      - name: srv_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: OpenSAPCourse_HANA7-hdi-container
+  - name: web
+    type: html5
+    path: web
+    requires:
+      - name: OpenSAP7_UAA
+resources:
+  - name: OpenSAPCourse_HANA7-hdi-container
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: OpenSAP7_UAA
+    type: com.sap.xs.uaa-space
+    parameters:
+      path: ./xs-security.json
