@@ -12,7 +12,7 @@
 							"CREATE TEMPORARY TABLE"]
 		}],
 		"schema_analytic_privileges": [{
-			"privileges": ["PO_VIEW_PRIVILEGE"]
+			"privileges": ["PO_VIEW_PRIVILEGE","FLIGHT_VIEW_PRIVILEGE"]
 		}]
 	}
 }
